@@ -1,0 +1,9 @@
+hello
+ git clone https://github.com/phpredis/phpredis.git
+apt-get install php-dev
+phpize
+./configure
+make
+make install
+cp modules/* /usr/lib/php/20190902/
+echo "extension = redis.so" >> /etc/php/7.4/apache2/php.ini
