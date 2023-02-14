@@ -22,10 +22,10 @@ r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 # Default values are stored in 'aerogardenInit.py', which is run when the Pi boots
 # Verify the values below in that file if you believe they have been changed from the defaults shown here
 #
-# r.set('pumpPIN', '17')
+# r.set('pumpPIN', '27')
 # r.set('pumpState', 'Off')
 # r.set('pumpTimer', '300')
-# r.set('lightPIN', '27')
+# r.set('lightPIN', '22')
 # r.set('lightState', 'Off')
 # r.set('lightTimer', '3600')
 # r.set('pumpLastAction', time.time())
