@@ -33,7 +33,7 @@ s.connect(('8.8.8.8', 1))
 IP = s.getsockname()[0]
 
 text1 = "AeroGarden Pi"
-text2 = "v 1.03"
+text2 = "v 1.04"
 text3 = "bit.ly/AeroPiCode"
 draw.text((x, top),       text1,  font=font, fill=255)
 draw.text((x, top+16),    text2, font=font, fill=255)
