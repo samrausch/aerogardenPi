@@ -1,5 +1,5 @@
 hello
- git clone https://github.com/phpredis/phpredis.git
+git clone https://github.com/phpredis/phpredis.git
 apt-get install php-dev
 phpize
 ./configure
@@ -7,3 +7,7 @@ make
 make install
 cp modules/* /usr/lib/php/20190902/
 echo "extension = redis.so" >> /etc/php/7.4/apache2/php.ini
+pip3 install adafruit-circuitpython-ssd1306
+apt-get install python3-pil
+apt-get install python3-numpy
+OLED setup instructions taken from https://learn.adafruit.com/monochrome-oled-breakouts/python-setup
