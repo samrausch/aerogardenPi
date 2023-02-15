@@ -81,26 +81,21 @@ def updateLCD():
 	pumpState = r.get('pumpState')
 	if( int(pumpState) == 0 ):
 		pumpStateString = "Off"
+		pumpTimer = float(r.get('pumpOffTime'))
 	elif( int(pumpState) == 1 ):
 		pumpStateString = "On"
-	pumpTimer = float(r.get('pumpTimer'))
+		pumpTimer = float(r.get('pumpOnTime'))
 	pumpLastAction = float(r.get('pumpLastAction'))
 	lightState = r.get('lightState')
 	if( int(lightState) == 0 ):
 		lightStateString = "Off"
+		lightTimer = float(r.get('lightOffTime'))
 	elif( int(lightState) == 1 ):
 		lightStateString = "On"
-	lightTimer = float(r.get('lightTimer'))
+		lightTimer = float(r.get('lightOnTime'))
 	lightLastAction = float(r.get('lightLastAction'))
-	#lcd.close(clear=True)
-	#lcd.write_string(str(time.strftime("%I:%M %p %a %m/%d")))
-	#lcd.crlf()
 	pumpStateOutput = "P: " + pumpStateString + " " + str(time.strftime("%I:%M %p", time.localtime(pumpLastAction + pumpTimer)))
-	#lcd.write_string(pumpStateOutput)
-	#lcd.crlf()
 	lightStateOutput = "L: " + lightStateString + " " + str(time.strftime("%I:%M %p", time.localtime(lightLastAction + lightTimer)))
-	#lcd.write_string(lightStateOutput)
-	#lcd.crlf()
 	updateText1 = str(time.strftime("%I:%M:%S %p %a %m/%d"))
 	draw.text((x, top), updateText1, font=font, fill=255)
 	draw.text((x, top+16), pumpStateOutput, font=font, fill=255)
@@ -112,8 +107,11 @@ def updateLCD():
 
 def updateDevices():
 	pumpLastAction = float(r.get('pumpLastAction'))
-	pumpTimer = int(r.get('pumpTimer'))
 	pumpState = int(r.get('pumpState'))
+	if( int(pumpState) == 0 ):
+		pumpTimer = int(r.get('pumpOffTime'))
+	else:
+		pumpTimer = int(r.get('pumpOnTime'))
 	pumpOnTime = int(r.get('pumpOnTime'))
 	pumpOffTime = int(r.get('pumpOffTime'))
 	if( pumpLastAction + pumpTimer <= time.time() ):
@@ -129,8 +127,11 @@ def updateDevices():
 			GPIO.output(pumpPIN, 1)
 
 	lightLastAction = float(r.get('lightLastAction'))
-	lightTimer = int(r.get('lightTimer'))
 	lightState = int(r.get('lightState'))
+	if( int(lightState) == 0 ):
+		lightTimer = int(r.get('lightOffTime'))
+	else:
+		lightTimer = int(r.get('lightOnTime'))
 	lightOnTime = int(r.get('lightOnTime'))
 	lightOffTime = int(r.get('lightOffTime'))
 	if( lightLastAction + lightTimer <= time.time() ):
