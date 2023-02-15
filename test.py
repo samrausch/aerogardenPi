@@ -28,9 +28,13 @@ top = padding
 bottom = HEIGHT-padding
 x = 0
 
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(('8.8.8.8', 1))
-IP = s.getsockname()[0]
+time.sleep(60)
+try:
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.connect(('8.8.8.8', 1))
+	IP = s.getsockname()[0]
+except:
+	IP = "UNKNOWN"
 
 text1 = "AeroGarden Pi"
 text2 = "v 1.04"
@@ -158,13 +162,14 @@ s.enter(30, 1, updateDevices)
 
 while(True):
 	if button.is_pressed:
+		print("Button!!!")
 		if prevState != currState:
 			currState = 1
 			buttonPress()
-			sleep(0.15)
+			time.sleep(0.15)
 		else:
 			currState = 0
 			buttonPress()
-			sleep(0.15)
+			time.sleep(0.15)
 	s.run()
 
